@@ -12,4 +12,9 @@ public class MainActivity extends AppCompatActivity implements  MainContract.Vie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
+
+    @Override
+    public void setRecyclerView() {
+
+    }
 }
