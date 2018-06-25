@@ -57,10 +57,10 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
     @Override
     public void onBindViewHolder(RecyclerViewListAdapter.ViewHolder holder, int position) {
         RandomItem randomItem = mRandomItems.get(position);
-        if (randomItem.getColor() == ItemColors.Blue)
-            holder.counterTextView.setText(randomItem.getCounter() * 3);
-        else
-            holder.counterTextView.setText(randomItem.getCounter());
+//        if (randomItem.getColor() == ItemColors.Blue)
+//            holder.counterTextView.setText(randomItem.getCounter() * 3);
+//        else
+//            holder.counterTextView.setText(randomItem.getCounter());
 
         // TODO set color
     }
