@@ -62,7 +62,10 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
 //        else
 //            holder.counterTextView.setText(randomItem.getCounter());
 
-        // TODO set color
+//        switch (randomItem.getColor().getHexColor()){
+//
+//        }
+//        // TODO set color
     }
 
     /**

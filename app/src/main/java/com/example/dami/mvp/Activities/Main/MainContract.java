@@ -7,6 +7,9 @@ public interface MainContract {
     }
 
     interface  Presenter{
-        void GetRecyclerViewItems();
+        void startThread();
+        void stopThread();
+        void removeRandomItems();
+
     }
 }
