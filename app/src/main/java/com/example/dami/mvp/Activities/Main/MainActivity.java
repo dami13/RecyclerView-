@@ -87,4 +87,32 @@ public class MainActivity extends AppCompatActivity implements  MainContract.Vie
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setHasFixedSize(true);
     }
+
+    @Override
+    public void IncrementCounterOfRandomItem(int idx) {
+        mAdapter.mRandomItems.get(idx).incCounter();
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void ResetCounterOfRandomItem(int idx) {
+        mAdapter.mRandomItems.get(idx).setCounter(0);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void RemoveRandomItem(int idx) {
+        mAdapter.mRandomItems.remove(idx);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void SumOfRandomItems(int idx) {
+        if(idx == 0)
+            mAdapter.mRandomItems.get(idx).
+                    setCounter(mAdapter.mRandomItems.get(idx).getCounter() + mAdapter.mRandomItems.get(mAdapter.mRandomItems.size()).getCounter());
+        else
+            mAdapter.mRandomItems.get(idx).
+                    setCounter(mAdapter.mRandomItems.get(idx).getCounter() + mAdapter.mRandomItems.get(idx-1).getCounter());
+    }
 }

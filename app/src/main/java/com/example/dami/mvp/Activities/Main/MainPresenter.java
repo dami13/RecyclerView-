@@ -38,13 +38,16 @@ public class MainPresenter implements MainContract.Presenter {
                                 int idx = Randomizer.getInstance().nextInt(mView.getRandomItemsListSize());
                                 switch (Randomizer.getInstance().getAction()){
                                     case IncrementCounter:
-
+                                        mView.IncrementCounterOfRandomItem(idx);
                                         break;
                                     case ResetCounter:
+                                        mView.ResetCounterOfRandomItem(idx);
                                         break;
                                     case RemoveRandomElement:
+                                        mView.RemoveRandomItem(idx);
                                         break;
                                     case SumCounters:
+                                        mView.SumOfRandomItems(idx);
                                         break;
                                 }
                             }

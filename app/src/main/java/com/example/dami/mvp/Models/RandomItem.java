@@ -17,6 +17,10 @@ public class RandomItem {
         return counter;
     }
 
+    public int incCounter() {
+        return ++counter;
+    }
+
     public void setCounter(int counter) {
         this.counter = counter;
     }

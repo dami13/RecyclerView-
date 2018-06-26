@@ -13,6 +13,10 @@ public interface MainContract {
         void addRandomItem(RandomItem item);
         void runOnMainThread(Runnable runnable);
         int getRandomItemsListSize();
+        void IncrementCounterOfRandomItem(int idx);
+        void ResetCounterOfRandomItem(int idx);
+        void RemoveRandomItem(int idx);
+        void SumOfRandomItems(int idx);
     }
 
     interface  Presenter{
