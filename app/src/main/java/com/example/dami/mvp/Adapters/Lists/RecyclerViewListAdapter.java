@@ -1,6 +1,5 @@
 package com.example.dami.mvp.Adapters.Lists;
-import android.graphics.Color;
-import android.support.annotation.NonNull;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +12,6 @@ import com.example.dami.mvp.Models.RandomItem;
 import com.example.dami.mvp.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewListAdapter.ViewHolder> {
     private ArrayList<RandomItem> mRandomItems;
@@ -57,15 +55,26 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
     @Override
     public void onBindViewHolder(RecyclerViewListAdapter.ViewHolder holder, int position) {
         RandomItem randomItem = mRandomItems.get(position);
-//        if (randomItem.getColor() == ItemColors.Blue)
-//            holder.counterTextView.setText(randomItem.getCounter() * 3);
-//        else
-//            holder.counterTextView.setText(randomItem.getCounter());
+        if (randomItem.getColor() == ItemColors.Blue)
+            holder.counterTextView.setText(String.valueOf(randomItem.getCounter() * 3));
+        else
+            holder.counterTextView.setText(String.valueOf(randomItem.getCounter()));
 
-//        switch (randomItem.getColor().getHexColor()){
-//
-//        }
-//        // TODO set color
+        GradientDrawable drawable;
+        switch (randomItem.getColor()){
+            case Blue:
+                holder.colorImageView.setImageResource(R.drawable.sh_circle);
+                drawable = (GradientDrawable) holder.colorImageView.getDrawable();
+                drawable.setColor(ItemColors.Blue.getColor());
+                break;
+            case Red:
+                holder.colorImageView.setImageResource(R.drawable.sh_circle);
+                drawable = (GradientDrawable) holder.colorImageView.getDrawable();
+                drawable.setColor(ItemColors.Red.getColor());
+                break;
+
+
+        }
     }
 
     /**
