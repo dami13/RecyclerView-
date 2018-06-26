@@ -12,11 +12,11 @@ public interface MainContract {
         void notifyRandomItemsListChanged();
         void addRandomItem(RandomItem item);
         void runOnMainThread(Runnable runnable);
+        int getRandomItemsListSize();
     }
 
     interface  Presenter{
         void startScheduledService();
         void stopScheduledService();
-        void removeRandomItems();
     }
 }

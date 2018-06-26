@@ -4,6 +4,7 @@ import android.widget.Toast;
 
 import com.example.dami.mvp.Adapters.Lists.RecyclerViewListAdapter;
 import com.example.dami.mvp.Helpers.ItemColors;
+import com.example.dami.mvp.Helpers.Randomizer;
 import com.example.dami.mvp.Models.RandomItem;
 
 import java.util.ArrayList;
@@ -22,11 +23,6 @@ public class MainPresenter implements MainContract.Presenter {
     }
 
     @Override
-    public void removeRandomItems() {
-        //m.mRandomItems.clear();
-    }
-
-    @Override
     public void startScheduledService() {
         mService = Executors.newSingleThreadScheduledExecutor();
         mService.scheduleAtFixedRate(new Runnable(){
@@ -36,8 +32,22 @@ public class MainPresenter implements MainContract.Presenter {
                     mView.runOnMainThread(new Runnable() {
                         @Override
                         public void run() {
-                            mView.addRandomItem(new RandomItem(20, ItemColors.Red));
-                            //TODO
+                            if(mView.getRandomItemsListSize() < 5)
+                                mView.addRandomItem(new RandomItem(0, Randomizer.getInstance().getRandomColor()));
+                            else{
+                                int idx = Randomizer.getInstance().nextInt(mView.getRandomItemsListSize());
+                                switch (Randomizer.getInstance().getAction()){
+                                    case IncrementCounter:
+
+                                        break;
+                                    case ResetCounter:
+                                        break;
+                                    case RemoveRandomElement:
+                                        break;
+                                    case SumCounters:
+                                        break;
+                                }
+                            }
                         }
                     });
                 }catch (Exception ex){

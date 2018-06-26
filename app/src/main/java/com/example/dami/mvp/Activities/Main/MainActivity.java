@@ -75,6 +75,10 @@ public class MainActivity extends AppCompatActivity implements  MainContract.Vie
         mAdapter.add(item);
     }
 
+    @Override
+    public int getRandomItemsListSize() {
+        return mAdapter.mRandomItems.size();
+    }
 
     @Override
     public void setRecyclerView() {
