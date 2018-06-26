@@ -15,14 +15,34 @@ import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends AppCompatActivity implements  MainContract.View {
-    private  MainPresenter mPresenter;
     @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
     @BindView(R.id.start_button) Button startButton;
     @BindView(R.id.stop_button) Button stopButton;
-    private RecyclerViewListAdapter mAdapter;
     ArrayList<RandomItem> mRandomItems;
+    private  MainPresenter mPresenter;
+    private RecyclerViewListAdapter mAdapter;
+
+    @OnClick(R.id.start_button)
+    public void startButtonClicked(){
+        mPresenter.startScheduledService();
+        stopButton.setText("Stop");
+    }
+
+    @OnClick(R.id.stop_button)
+    public void stopButtonClicked(){
+        if(mPresenter.isScheduledExecutorServiceRunning()) {
+            mPresenter.stopScheduledService();
+            stopButton.setText("Reset");
+        }
+        else
+        {
+            mPresenter.removeRandomItems(mRandomItems);
+            mAdapter.notifyDataSetChanged();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,14 +55,6 @@ public class MainActivity extends AppCompatActivity implements  MainContract.Vie
         //for test
         mRandomItems.add(new RandomItem(29, ItemColors.Blue));
         mRandomItems.add(new RandomItem(29, ItemColors.Red));
-        mRandomItems.add(new RandomItem(29, ItemColors.Blue));
-        mRandomItems.add(new RandomItem(29, ItemColors.Blue));
-        mRandomItems.add(new RandomItem(29, ItemColors.Blue));
-        mRandomItems.add(new RandomItem(29, ItemColors.Blue));
-        mRandomItems.add(new RandomItem(29, ItemColors.Blue));
-        mRandomItems.add(new RandomItem(29, ItemColors.Blue));
-        mRandomItems.add(new RandomItem(29, ItemColors.Blue));
-        mRandomItems.add(new RandomItem(29, ItemColors.Blue));
 
         setRecyclerView();
     }

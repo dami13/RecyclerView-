@@ -1,5 +1,9 @@
 package com.example.dami.mvp.Activities.Main;
 
+import com.example.dami.mvp.Models.RandomItem;
+
+import java.util.List;
+
 public interface MainContract {
 
     interface View{
@@ -7,9 +11,9 @@ public interface MainContract {
     }
 
     interface  Presenter{
-        void startThread();
-        void stopThread();
-        void removeRandomItems();
+        void startScheduledService();
+        void stopScheduledService();
+        void removeRandomItems(List<RandomItem> randomItems);
 
     }
 }
