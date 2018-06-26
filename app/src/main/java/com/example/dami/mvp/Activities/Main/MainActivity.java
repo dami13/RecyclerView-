@@ -1,14 +1,19 @@
 package com.example.dami.mvp.Activities.Main;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.dami.mvp.Adapters.Lists.RecyclerViewListAdapter;
-import com.example.dami.mvp.Helpers.ItemColors;
+import com.example.dami.mvp.Helpers.SimpleDividerItemDecoration;
 import com.example.dami.mvp.Models.RandomItem;
 import com.example.dami.mvp.R;
 
@@ -84,6 +89,9 @@ public class MainActivity extends AppCompatActivity implements  MainContract.Vie
     public void setRecyclerView() {
         mAdapter = new RecyclerViewListAdapter(new ArrayList<RandomItem>());
         mRecyclerView.setAdapter(mAdapter);
+        mRecyclerView.addItemDecoration(new SimpleDividerItemDecoration(
+                getApplicationContext()
+        ));
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setHasFixedSize(true);
     }
@@ -116,3 +124,4 @@ public class MainActivity extends AppCompatActivity implements  MainContract.Vie
                     setCounter(mAdapter.mRandomItems.get(idx).getCounter() + mAdapter.mRandomItems.get(idx-1).getCounter());
     }
 }
+

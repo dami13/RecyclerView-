@@ -1,8 +1,6 @@
 package com.example.dami.mvp.Models;
 
-import android.graphics.Color;
-
-import com.example.dami.mvp.Helpers.ItemColors;
+import com.example.dami.mvp.Helpers.Enums.ItemColors;
 
 public class RandomItem {
     private int counter;

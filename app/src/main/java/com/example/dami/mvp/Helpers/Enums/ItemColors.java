@@ -1,4 +1,4 @@
-package com.example.dami.mvp.Helpers;
+package com.example.dami.mvp.Helpers.Enums;
 
 import android.graphics.Color;
 

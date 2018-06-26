@@ -1,15 +1,8 @@
 package com.example.dami.mvp.Activities.Main;
 
-import android.widget.Toast;
-
-import com.example.dami.mvp.Adapters.Lists.RecyclerViewListAdapter;
-import com.example.dami.mvp.Helpers.ItemColors;
 import com.example.dami.mvp.Helpers.Randomizer;
 import com.example.dami.mvp.Models.RandomItem;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;

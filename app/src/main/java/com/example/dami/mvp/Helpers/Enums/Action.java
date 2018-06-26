@@ -1,4 +1,4 @@
-package com.example.dami.mvp.Helpers;
+package com.example.dami.mvp.Helpers.Enums;
 
 public enum Action {
     IncrementCounter,

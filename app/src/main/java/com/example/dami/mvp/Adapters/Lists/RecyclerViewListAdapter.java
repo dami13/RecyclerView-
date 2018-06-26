@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.dami.mvp.Helpers.ItemColors;
+import com.example.dami.mvp.Helpers.Enums.ItemColors;
 import com.example.dami.mvp.Models.RandomItem;
 import com.example.dami.mvp.R;
 
