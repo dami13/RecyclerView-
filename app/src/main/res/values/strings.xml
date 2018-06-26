@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">MVP</string>
+    <string name="service_started">Service Status: Started</string>
+    <string name="service_running">Service Status: Running</string>
+    <string name="service_terminated">Service status: Terminated</string>
+    <string name="list_cleared">List cleared</string>
+    <string name="button_text_stop">Stop</string>
+    <string name="button_text_reset">Reset</string>
 </resources>

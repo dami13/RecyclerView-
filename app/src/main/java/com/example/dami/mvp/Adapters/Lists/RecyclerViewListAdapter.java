@@ -14,11 +14,11 @@ import com.example.dami.mvp.R;
 import java.util.ArrayList;
 
 public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewListAdapter.ViewHolder> {
-    private ArrayList<RandomItem> mRandomItems;
+    public ArrayList<RandomItem> mRandomItems;
 
     /**
      * Konstruktor dla głównego adaptera
-     * @param randomItems Lista itemów
+     * @param randomItems Lista items
      */
     public RecyclerViewListAdapter(ArrayList<RandomItem> randomItems) {
         this.mRandomItems = randomItems;
@@ -72,9 +72,17 @@ public class RecyclerViewListAdapter extends RecyclerView.Adapter<RecyclerViewLi
                 drawable = (GradientDrawable) holder.colorImageView.getDrawable();
                 drawable.setColor(ItemColors.Red.getColor());
                 break;
-
-
         }
+    }
+
+    public void add(RandomItem item){
+        this.mRandomItems.add(item);
+        this.notifyDataSetChanged();
+    }
+
+    public void clear(){
+        this.mRandomItems.clear();
+        this.notifyDataSetChanged();
     }
 
     /**

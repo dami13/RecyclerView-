@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.dami.mvp.Adapters.Lists.RecyclerViewListAdapter;
 import com.example.dami.mvp.Helpers.ItemColors;
@@ -21,26 +22,36 @@ public class MainActivity extends AppCompatActivity implements  MainContract.Vie
     @BindView(R.id.recycler_view) RecyclerView mRecyclerView;
     @BindView(R.id.start_button) Button startButton;
     @BindView(R.id.stop_button) Button stopButton;
-    ArrayList<RandomItem> mRandomItems;
-    private  MainPresenter mPresenter;
+    private MainPresenter mPresenter;
     private RecyclerViewListAdapter mAdapter;
 
     @OnClick(R.id.start_button)
     public void startButtonClicked(){
-        mPresenter.startScheduledService();
-        stopButton.setText("Stop");
+        if(!mPresenter.isScheduledExecutorServiceRunning()) {
+            mPresenter.startScheduledService();
+            stopButton.setText(R.string.button_text_stop);
+            Toast.makeText(this, R.string.service_started, Toast.LENGTH_SHORT).show();
+        }
+        else
+            Toast.makeText(this, R.string.service_running, Toast.LENGTH_SHORT).show();
+    }
+
+    public void runOnMainThread(Runnable runnable) {
+            this.runOnUiThread(runnable);
     }
 
     @OnClick(R.id.stop_button)
     public void stopButtonClicked(){
         if(mPresenter.isScheduledExecutorServiceRunning()) {
             mPresenter.stopScheduledService();
-            stopButton.setText("Reset");
+            stopButton.setText(R.string.button_text_reset);
+            Toast.makeText(this, R.string.service_terminated, Toast.LENGTH_SHORT).show();
         }
         else
         {
-            mPresenter.removeRandomItems(mRandomItems);
+            mAdapter.clear();
             mAdapter.notifyDataSetChanged();
+            Toast.makeText(this, R.string.list_cleared, Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -48,20 +59,26 @@ public class MainActivity extends AppCompatActivity implements  MainContract.Vie
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
         // Init
-        mRandomItems = new ArrayList<RandomItem>();
-        mPresenter = new MainPresenter();
-        //for test
-        mRandomItems.add(new RandomItem(29, ItemColors.Blue));
-        mRandomItems.add(new RandomItem(29, ItemColors.Red));
-
+        mPresenter = new MainPresenter(this);
+        ButterKnife.bind(this);
         setRecyclerView();
     }
 
     @Override
+    public void notifyRandomItemsListChanged() {
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void addRandomItem(RandomItem item) {
+        mAdapter.add(item);
+    }
+
+
+    @Override
     public void setRecyclerView() {
-        mAdapter = new RecyclerViewListAdapter(mRandomItems);
+        mAdapter = new RecyclerViewListAdapter(new ArrayList<RandomItem>());
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
         mRecyclerView.setHasFixedSize(true);
